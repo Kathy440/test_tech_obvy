@@ -1,0 +1,51 @@
+<div class="container bottom" *ngIf="single">
+    <h1>Emprunter le livre : {{ single.volumeInfo.title }}</h1>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <img *ngIf="single.volumeInfo.imageLinks.thumbnail" src="{{ single.volumeInfo.imageLinks.thumbnail }}" class="img-fluid" />
+        </div>
+        <form [formGroup]="borrewedForm" (ngSubmit)="onSubmitForm()">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" formControlName="date" placeholder="Date">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="date">Rendue</label>
+                    <input type="date" class="form-control" id="date" formControlName="rendue" placeholder="Date">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="commentaire">Commentaire</label>
+                <input type="text" class="form-control" id="commentaire" formControlName="commentaire" placeholder="Commentaire">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="this.showValidation">
+                Valider
+            </button>
+            <a (click)="goBack()" class="waves-effect waves-light btn">Retour</a>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let b of borrewed">
+                    <h4>Name of borrower : {{ b.nom }}</h4>
+                    <p><small>Date of borrower : {{b.date}}</small> - <span><small>Date of rendue :
+                                {{b.rendue}}</small></span></p>
+
+                    <p>{{b.commentaire}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

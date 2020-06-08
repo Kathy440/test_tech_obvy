@@ -1,0 +1,27 @@
+/* .book-display {
+    font-size: 20px;
+    min-height: 50vh;
+    border: 1px solid rgb(15, 15, 15);
+    margin-right: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 6px 6px #e6e6e6;
+} */
+
+.book-display {
+    margin-bottom: 15px;
+    margin-right: 1px;
+}
+
+.book-display image {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    height: 30vh;
+}
+
+.book-display image img {
+    width: 100%;
+    object-fit: fill;
+    height: 25vh;
+}

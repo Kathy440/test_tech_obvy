@@ -1,0 +1,82 @@
+<div *ngIf="!loading" class="container-fluid hero-page1">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h1>Search</h1>
+                <input [formControl]="queryField" id="keyword" type="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="search author, title, Id " />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="container-fluid mt-4">
+    <div class="container">
+        <h1>Search your book</h1>
+        <div class="row justify-content-start align-items-start mb-5 ">
+            <div class="col-lg-12">
+                <input class="form-control" [formControl]="queryField" type="search" id="keyword" placeholder="search author, title, Id" typeahead-wait-ms="delay" autocomplete="off" />
+            </div>
+            <br>
+            <br>
+            <br><br>
+            <div class="row" *ngIf="items">
+
+                <div class="col-12 col-md-4 col-lg-4 mb-3" *ngFor="let product of items">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-5">
+                                <img *ngIf="product.volumeInfo.imageLinks" src="{{ product.volumeInfo.imageLinks.thumbnail }}" class="card-img" height="250" />
+                            </div>
+                            <div class="col-sm-7 text-left">
+                                <div class="card-body">
+                                    <h5 class="text-card-title">{{ product.volumeInfo.title }}</h5>
+                                    <p class="text-card-text my-2">
+                                        <span class="text-card-title" *ngFor="let aut of product.volumeInfo.authors">Authors: {{ aut }}</span>
+                                    </p>
+                                    <p class="text-card-text my-2">
+                                        <span class="text-card-title">Published Date:</span> {{ product.volumeInfo.publishedDate | date: 'short'}}
+                                    </p>
+                                    <!-- <p class="text-card-text my-2">
+                                        <span class="text-card-title">Publisher:</span> {{ product.volumeInfo.publisher }}
+                                    </p> -->
+
+                                    <a [routerLink]="['/detail', product.id]">Detail</a>
+
+                                    <a [routerLink]="['/borrow', product.id]" class="btn btn-dark" style="float: right">
+                                        Emprunter
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- <div *ngIf="items" class="col-12 mt-5 ">
+                <div class="row justify-content-around">
+                    <div *ngFor="let product of items" class="col-lg-3 col-md-6 col-sm-12 book-display card horizontal">
+                        <div class="card-image">
+                            <img *ngIf="product.volumeInfo.imageLinks" src="{{ product.volumeInfo.imageLinks.thumbnail }}" alt="" />
+                        </div>
+                        <div *ngFor="let aut of product.volumeInfo.authors">
+                            <span> Authors: {{ aut }}</span>
+                        </div>
+                        <div class="details">
+                            <span>Title: {{ product.volumeInfo.title }}</span> <br />
+                            <br />
+                            <a [routerLink]="['/detail', product.id]">Detail</a>
+                            <a [routerLink]="['/borrow', product.id]" class="btn btn-info" style="float: right">
+                                Emprunter
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

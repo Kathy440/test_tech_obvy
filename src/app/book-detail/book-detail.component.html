@@ -1,0 +1,48 @@
+<div class="container pb-20 bottom" *ngIf="single">
+    <h1>Details of book : {{ single.volumeInfo.title }}</h1>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="card card-book">
+                <div class="card-body">
+                    <div class="text-center">
+                        <p class="text-title">{{ single.volumeInfo.title }}</p>
+                        <img *ngIf="single.volumeInfo.imageLinks.thumbnail" src="{{ single.volumeInfo.imageLinks.thumbnail }}" class="img-fluid" />
+                    </div>
+
+                    <div class="text-left mt-5">
+                        <p class="text-card-text" *ngFor="let aut of single.volumeInfo.authors">
+                            <span class="text-card-title">Authors:</span> {{ aut }}
+                        </p>
+                        <p class="text-card-text">
+                            <span class="text-card-title">Publisher:</span> {{ single.volumeInfo.publisher }}
+                        </p>
+                        <p class="text-card-text">
+                            <span class="text-card-title">Published
+                                Date : </span>{{ single.volumeInfo.publishedDate | date: 'short'}}
+                        </p>
+                        <p class="text-card-text">
+                            <span class="text-card-title">Number of pages:</span> {{ single.volumeInfo.pageCount }} pages
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-8">
+            <div class="card card-book">
+                <div class="card-body">
+                    <div class="text-left mb-5">
+                        <p class="h5">Book Description</p>
+                        <small>id : {{single.id}}</small>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-card-text" [innerHTML]="single.volumeInfo.description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="float: right">
+        <a (click)="goBack()"  class="waves-effect waves-light btn btn-info">Retour</a>
+</div>
+</div>
